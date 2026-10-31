@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 // idea-to-cash · 项目状态机（state 存用户项目 .vibe/state.json，skill 目录不写入）
 // 用法:
-//   node state.mjs init   [--cwd <dir>] [--form-factor web|miniapp|app|internal] [--has-server true|false] [--idea "一句话"]
+//   node state.mjs init   [--cwd <dir>] [--form-factor web|miniapp|app|internal] [--has-server true|false] [--idea "一句话"] [--biz-id REQ-2026-0001]
 //   node state.mjs status [--cwd <dir>] [--json]
 //   node state.mjs advance [--cwd <dir>] [--evidence <file>]
 //   node state.mjs rollback --to <n> [--cwd <dir>]
-//   node state.mjs set <form_factor|has_server|idea> <value> [--cwd <dir>]
+//   node state.mjs set <form_factor|has_server|idea|biz_id> <value> [--cwd <dir>]
+//   node state.mjs link <opc|engineering> <ref> [--cwd <dir>]     # 只记指针，不动别人的状态
+//   node state.mjs unlink <opc|engineering> [--cwd <dir>]
 // 退出码: 0 成功 ｜ 2 用法/状态错误
+//
+// biz_id = 共享业务 ID（REQ-<年>-<序号>），与经营层 / 工程层共用同一个号。
+// 规则来源：skills/opc-business-registry/SKILL.md（这里是内联副本，便于单独取用本技能）。
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -16,6 +21,11 @@ import { SCHEMA_VERSION, STAGES, FORM_FACTORS, getStage, isActive, nextActiveSta
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEMPLATES_DIR = path.join(__dirname, '..', 'assets', 'vibe-templates');
+
+// 共享业务 ID 规则（权威副本在 opc-business-registry，此处内联一份兜底）
+const BIZ_ID_RE = /^[A-Z][A-Z0-9]{1,9}-\d{4}-\d{4}$/;
+// 可登记指针的层（产品层是本文件自己，不用登记）
+const LINKABLE_LAYERS = ['opc', 'engineering'];
 
 function parseArgs(argv) {
   const args = { _: [], flags: {} };
@@ -40,6 +50,15 @@ function loadState(cwd) {
   const p = statePath(cwd);
   if (!fs.existsSync(p)) die(`未找到 ${p} —— 先跑 init`);
   const s = JSON.parse(fs.readFileSync(p, 'utf8'));
+  if (s.schema_version === 1 && SCHEMA_VERSION === 2) {
+    // v1 → v2 迁移：补 biz_id / layers，其余字段（current_stage / gates）原样保留
+    s.biz_id = s.biz_id || '';
+    s.layers = s.layers || {};
+    s.schema_version = 2;
+    saveState(cwd, s);
+    console.log(`[state] 已把 state.json 从 v1 迁移到 v2（补 biz_id / layers，关卡记录未动）`);
+    return s;
+  }
   if (s.schema_version !== SCHEMA_VERSION) die(`state schema v${s.schema_version} ≠ 当前 v${SCHEMA_VERSION}，需迁移`);
   return s;
 }
@@ -59,6 +78,21 @@ function copyTemplates(cwd) {
   return copied;
 }
 
+// 共享业务 ID：格式校验 + 从工作区根的 business.json 取现成的号
+function assertBizId(id) {
+  if (!BIZ_ID_RE.test(id)) die(`业务 ID 格式不对：${id}（应为 REQ-<年份>-<4位序号>，如 REQ-2026-0001）`);
+  return id;
+}
+
+function registryBizId(cwd) {
+  const p = path.join(cwd, 'business.json');
+  if (!fs.existsSync(p)) return '';
+  try {
+    const reg = JSON.parse(fs.readFileSync(p, 'utf8'));
+    return reg.id && BIZ_ID_RE.test(reg.id) ? reg.id : '';
+  } catch { return ''; }
+}
+
 function cmdInit(cwd, flags) {
   const p = statePath(cwd);
   if (fs.existsSync(p)) {
@@ -68,19 +102,23 @@ function cmdInit(cwd, flags) {
   const ff = flags['form-factor'] || 'web';
   if (!FORM_FACTORS.includes(ff)) die(`form-factor 须为 ${FORM_FACTORS.join('|')}`);
   fs.mkdirSync(vibeDir(cwd), { recursive: true });
+  const bizId = flags['biz-id'] ? assertBizId(String(flags['biz-id'])) : registryBizId(cwd);
   const s = {
     schema_version: SCHEMA_VERSION,
+    biz_id: bizId,
     idea: flags.idea || '',
     form_factor: ff,
     has_server: String(flags['has-server']) === 'true',
     current_stage: 1,
     gates: {},
+    layers: {},
     created_at: new Date().toISOString(),
     updated_at: null,
   };
   saveState(cwd, s);
   const copied = copyTemplates(cwd);
   console.log(`[state] 初始化完成：形态=${ff}，自有服务器=${s.has_server ? '是' : '否'}`);
+  console.log(`[state] 业务 ID：${bizId || '(未分配 —— 用 set biz_id <REQ-年份-序号> 补，或先跑 opc-business-registry 的 alloc)'}`);
   if (copied.length) console.log(`[state] 已铺产物模板：${copied.join(', ')}`);
   console.log(`[state] 从第 1 关（方向判断）开始。填 .vibe/direction.md 后跑 gate check 1`);
 }
@@ -89,6 +127,7 @@ function cmdStatus(cwd, flags) {
   const s = loadState(cwd);
   if (flags.json) { console.log(JSON.stringify(s, null, 2)); return; }
   console.log('idea-to-cash · 项目状态');
+  console.log(`业务 ID: ${s.biz_id || '(未分配)'}`);
   console.log(`想法: ${s.idea || '(未填)'}`);
   console.log(`形态: ${s.form_factor} ｜ 自有服务器: ${s.has_server ? '是' : '否'}`);
   const lines = STAGES.map(st => {
@@ -156,9 +195,31 @@ function cmdSet(cwd, key, value) {
     s.has_server = value === 'true';
   } else if (key === 'idea') {
     s.idea = value || '';
-  } else die(`不支持的 key：${key}（可用 form_factor|has_server|idea）`);
+  } else if (key === 'biz_id') {
+    s.biz_id = value ? assertBizId(value) : '';
+  } else die(`不支持的 key：${key}（可用 form_factor|has_server|idea|biz_id）`);
   saveState(cwd, s);
   console.log(`[state] ${key} = ${value}`);
+}
+
+// 只记指针，不读也不写别层的状态内容（跨层只做引用，不做写）
+function cmdLink(cwd, layer, ref) {
+  if (!LINKABLE_LAYERS.includes(layer)) die(`layer 须为 ${LINKABLE_LAYERS.join('|')}（产品层就是本文件，不用登记）`);
+  if (!ref) die('用法：link <opc|engineering> <ref>');
+  const s = loadState(cwd);
+  s.layers = s.layers || {};
+  s.layers[layer] = { ref, at: new Date().toISOString() };
+  saveState(cwd, s);
+  console.log(`[state] 业务 ID ${s.biz_id || '(未分配)'} → ${layer} 层指向 ${ref}`);
+  console.log(`[state] 只记指针，不动该层的状态`);
+}
+
+function cmdUnlink(cwd, layer) {
+  if (!LINKABLE_LAYERS.includes(layer)) die(`layer 须为 ${LINKABLE_LAYERS.join('|')}`);
+  const s = loadState(cwd);
+  delete (s.layers || {})[layer];
+  saveState(cwd, s);
+  console.log(`[state] 已解除 ${layer} 层的引用`);
 }
 
 // ---- main ----
@@ -173,9 +234,17 @@ switch (cmd) {
   case 'rollback': cmdRollback(cwd, args.flags); break;
   case 'set': {
     const [, key, value] = args._;
-    if (!key || value === undefined) die('用法：set <form_factor|has_server|idea> <value>');
+    if (!key || value === undefined) die('用法：set <form_factor|has_server|idea|biz_id> <value>');
     cmdSet(cwd, key, value); break;
   }
+  case 'link': {
+    const [, layer, ref] = args._;
+    cmdLink(cwd, layer, ref); break;
+  }
+  case 'unlink': {
+    const [, layer] = args._;
+    cmdUnlink(cwd, layer); break;
+  }
   default:
-    die('用法：state.mjs <init|status|advance|rollback|set> …（见文件头注释）');
+    die('用法：state.mjs <init|status|advance|rollback|set|link|unlink> …（见文件头注释）');
 }

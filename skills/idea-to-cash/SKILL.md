@@ -34,6 +34,19 @@ library: opc-playbook
 - 推进纪律：`state.mjs advance` 会**自动跑当前关门禁**，FAIL 直接拒绝推进；`--skip-gate` 是唯一逃生舱且会记录在案——不要替用户默默使用。
 - state 坏了/走错了：`state.mjs rollback --to <n>`；改形态 `state.mjs set form_factor <v>`（会重算 9-12 关路由）。
 
+## 业务 ID（贯穿三层的唯一编号）
+
+`state.json` 带一个 `biz_id` 字段，格式 `REQ-<年>-<4位序号>`（如 `REQ-2026-0001`），
+和经营层（`opc-doc/`）、工程层（`PROGRESS.md`）**共用同一个号**。
+
+- `state.mjs init` 时不给 `--biz-id`，会自动去读工作区根的 `business.json` 取现成的号；
+  格式不对会被拒绝（`set biz_id` 同理）。
+- 分配业务 ID 用 `opc-business-registry`：
+  `node <该 skill>/scripts/bizid.mjs alloc --cwd <项目目录> --title "…"`。
+- `state.mjs link <opc|engineering> <ref>` 只**记指针**（那一层的状态文件路径），
+  不读也不写那一层的状态内容——**状态机互不覆盖，只互相引用**。
+- 报告进度时若 `biz_id` 为空，先提醒用户分配一个号（跨层追溯全靠它）。
+
 ## 16 关速查
 
 | # | 关 | 产物 | reference |

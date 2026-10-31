@@ -4,7 +4,7 @@ library: opc-playbook
 label: OPC 经营与商业判断
 updated: '2026-10-31'
 count:
-  skills: 29
+  skills: 30
   groups: 2
 groups:
 - id: growth-ops
@@ -18,7 +18,7 @@ groups:
   what: 资源盘点,赛道选择,商业模式,价值主张,MVP,转化闭环,资产沉淀,获客增长,经营体检,策略,技术栈,公司合规
   triggers: OPC,一人公司,经营,立项,选赛道,商业模式,价值主张,MVP,转化,资产,获客,经营体检,策略,技术选型,公司注册,合规
   authority: domain
-  skills: 16
+  skills: 17
 state_machines:
 - id: opc-business
   label: OPC 经营层
@@ -30,6 +30,12 @@ state_machines:
   stages: 16
   entry: growth-ops/idea-to-cash
   chain: 想法 → 验证 → 最小交付 → 定价 → 成交 → 回款
+business_id:
+  format: REQ-<4位年份>-<4位序号>
+  example: REQ-2026-0001
+  registry: <工作区根>/business.json
+  allocator: opc/opc-business-registry
+  note: 注册表不属于任何一层；三层只引用同一个号，各自只维护自己的状态
 skills:
 - id: growth-ops/anomaly-detection
   name: 异常检测
@@ -287,6 +293,21 @@ skills:
   deprecated: false
   authority: primary
   files: 5
+- id: opc/opc-business-registry
+  name: 共享业务 ID 注册表
+  path: skills/opc-business-registry/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: 共享业务 ID 注册表 —— 给一条业务线分配唯一编号（REQ-年份-序号），并让经营层、产品层、工程层三台状态机靠同一个 ID 互相引用、互不覆盖。当需要立项、给业务起编号、或要确认"这三份东西是不是同一件事"时使用。
+  origin: 本机自研
+  license: 见来源
+  keywords: 业务ID,业务编号,立项,编号,贯穿,三台状态机,同一个ID,注册表
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 2
 - id: opc/opc-compliance
   name: 公司注册与合规
   path: skills/opc-compliance/SKILL.md

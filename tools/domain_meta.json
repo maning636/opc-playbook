@@ -26,7 +26,14 @@
       "三台状态机共享同一个业务 ID，互不覆盖，只互相引用",
       "回退只向上（往上游阶段退），BLOCKED 只向下（往下游阶段退）",
       "经营层不覆盖产品层，产品层不覆盖工程层"
-    ]
+    ],
+    "business_id": {
+      "format": "REQ-<4位年份>-<4位序号>",
+      "example": "REQ-2026-0001",
+      "registry": "<工作区根>/business.json",
+      "allocator": "opc/opc-business-registry",
+      "note": "注册表不属于任何一层；三层只引用同一个号，各自只维护自己的状态"
+    }
   },
   "groups": {
     "opc": {

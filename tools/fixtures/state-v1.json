@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "idea": "老项目",
+  "form_factor": "web",
+  "has_server": false,
+  "current_stage": 5,
+  "gates": {
+    "1": { "passed": true, "at": "2026-01-01T00:00:00.000Z" }
+  },
+  "created_at": "2026-01-01T00:00:00.000Z",
+  "updated_at": "2026-01-01T00:00:00.000Z"
+}

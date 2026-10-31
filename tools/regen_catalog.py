@@ -101,6 +101,17 @@ def render_index(meta, groups):
     for r in lib["rules"]:
         A("- %s" % r)
     A("")
+    bid = lib.get("business_id")
+    if bid:
+        A("**共享业务 ID**")
+        A("")
+        A("| 项 | 值 |")
+        A("|---|---|")
+        A("| 格式 | `%s`（例 `%s`） |" % (bid["format"], bid["example"]))
+        A("| 注册表 | `%s` |" % bid["registry"])
+        A("| 分配器 | `%s` |" % bid["allocator"])
+        A("| 纪律 | %s |" % bid["note"])
+        A("")
     A("## 技能路由表")
     A("")
     for gname in [g for g in ("opc", "growth-ops") if g in groups]:
@@ -167,6 +178,7 @@ def main():
             for g in groups
         ],
         "state_machines": meta["library"]["state_machines"],
+        "business_id": meta["library"].get("business_id"),
         "skills": [r for g in groups for r in groups[g]],
     }
     with open(CATALOG, "w", encoding="utf-8", newline="\n") as fh:

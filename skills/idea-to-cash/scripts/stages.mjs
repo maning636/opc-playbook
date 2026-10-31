@@ -1,5 +1,6 @@
 // idea-to-cash · 16 关定义 + 形态路由（state.mjs / gate.mjs 共享）
-export const SCHEMA_VERSION = 1;
+// v2: 新增 biz_id（共享业务 ID）+ layers（跨层引用指针，只记路径不搬状态）
+export const SCHEMA_VERSION = 2;
 export const FORM_FACTORS = ['web', 'miniapp', 'app', 'internal'];
 
 // skip(state) 返回 true = 该关对当前项目不适用（自动跳过）
