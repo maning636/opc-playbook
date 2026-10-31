@@ -1,0 +1,63 @@
+opc-playbook
+Copyright (c) 2026 maning636
+
+本仓库聚合来自以下第三方上游项目的技能内容：
+
+--------------------------------------------------------------------------
+1. anthropics/knowledge-work-plugins
+   https://github.com/anthropics/knowledge-work-plugins
+   License: Apache License 2.0
+   收录内容: 9 个 growth-ops 插件技能
+             opc-resource-audit / opc-niche-positioning /
+             opc-business-model-design / opc-mvp-designer /
+             opc-value-proposition / opc-conversion-loop / opc-asset-ops /
+             opc-dashboard-review / opc-orchestrator
+   各文件 frontmatter 的 origin 字段记录了精确来源与上游 commit。
+   Copyright 2026 Anthropic, PBC.
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+--------------------------------------------------------------------------
+2. 本机自研（含 AI 一人公司 OPC 体系）
+   License: 见各技能 frontmatter 的 license 字段；未声明者视为作者自研
+   收录内容: 18 个
+             growth-ops/{idea-to-cash, orchestration, personalise, plan-for-goal,
+                         five-why, hv-analysis, risk-scoring, peers-advisory-group,
+                         six-thinking-hats, first-principles-mentor,
+                         anomaly-detection, kpi-monitoring, crm-data-governance}
+             opc/{opc-100day-profit, opc-strategy, opc-techstack, opc-compliance}
+
+   说明: 导入时对文本文件做了编码归一化（统一 UTF-8），并剔除 .git / node_modules /
+         dist 等构建产物。技能正文未做内容修改，仅重写了 frontmatter
+         （增加 id / domain / library / origin / license 字段）。
+
+--------------------------------------------------------------------------
+关于本地依赖
+--------------------------------------------------------------------------
+部分技能在运行时会依赖本机环境（而非随技能分发），已在其 SKILL.md 中标注，例如：
+  * idea-to-cash  -> 自带状态机脚本（scripts/state.mjs），需 Node
+  * opc-techstack -> 需 Node / Bun
+  * opc-compliance -> 依赖本机浏览器会话做工商与备案查询
+这些依赖不随本仓库分发，使用前请先读对应 SKILL.md 的前置条件。
+
+--------------------------------------------------------------------------
+本仓库自身的原创部分（三层索引结构、INDEX.md / AGENT.md 协议、
+tools/fetch.py、tools/regen_catalog.py、tools/domain_meta.json、
+tools/curated_zh.json、catalog.yaml 生成逻辑，以及各技能 frontmatter 的
+重写工作）以 MIT 许可发布，见 LICENSE。
+各技能目录内保留的上游 LICENSE / NOTICE 文件，均继续适用其各自许可。
+
+--------------------------------------------------------------------------
+来源说明
+--------------------------------------------------------------------------
+本库自 agent-skills 的 domains/opc/ 与 domains/growth-ops/ 迁出而成
+（迁出日期 2026-10-31）。迁出只改变目录形态与 frontmatter 字段，
+技能正文未做内容修改。
+--------------------------------------------------------------------------

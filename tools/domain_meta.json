@@ -1,0 +1,45 @@
+{
+  "_comment": "opc-playbook 的分组元信息。INDEX.md / catalog.yaml 均由此生成。",
+  "library": {
+    "id": "opc-playbook",
+    "label": "OPC 经营与商业判断",
+    "what": "一人公司经营闭环 + 通用增长与分析方法",
+    "kind": "skills",
+    "layout": "skills/<name>/SKILL.md",
+    "state_machines": [
+      {
+        "id": "opc-business",
+        "label": "OPC 经营层",
+        "stages": 9,
+        "entry": "opc/opc-orchestrator",
+        "chain": "资源盘点 → 赛道选择 → 商业模式 → 价值主张 → MVP → 转化闭环 → 资产沉淀 → 获客增长 → 经营体检"
+      },
+      {
+        "id": "idea-to-cash",
+        "label": "idea-to-cash 产品层",
+        "stages": 16,
+        "entry": "growth-ops/idea-to-cash",
+        "chain": "想法 → 验证 → 最小交付 → 定价 → 成交 → 回款"
+      }
+    ],
+    "rules": [
+      "三台状态机共享同一个业务 ID，互不覆盖，只互相引用",
+      "回退只向上（往上游阶段退），BLOCKED 只向下（往下游阶段退）",
+      "经营层不覆盖产品层，产品层不覆盖工程层"
+    ]
+  },
+  "groups": {
+    "opc": {
+      "label": "OPC 经营层",
+      "what": "资源盘点,赛道选择,商业模式,价值主张,MVP,转化闭环,资产沉淀,获客增长,经营体检,策略,技术栈,公司合规",
+      "triggers": "OPC,一人公司,经营,立项,选赛道,商业模式,价值主张,MVP,转化,资产,获客,经营体检,策略,技术选型,公司注册,合规",
+      "authority": "domain"
+    },
+    "growth-ops": {
+      "label": "通用增长与分析",
+      "what": "目标拆解,根因分析,同行顾问,决策评分,创意到回款,异常检测,CRM数据治理,KPI监控",
+      "triggers": "目标拆解,根因分析,五问,第一性原理,同行顾问,决策评分,创意到回款,异常检测,CRM治理,KPI监控,六顶帽",
+      "authority": "domain"
+    }
+  }
+}

@@ -1,0 +1,490 @@
+version: 1
+kind: skills
+library: opc-playbook
+label: OPC 经营与商业判断
+updated: '2026-10-31'
+count:
+  skills: 27
+  groups: 2
+groups:
+- id: growth-ops
+  label: 通用增长与分析
+  what: 目标拆解,根因分析,同行顾问,决策评分,创意到回款,异常检测,CRM数据治理,KPI监控
+  triggers: 目标拆解,根因分析,五问,第一性原理,同行顾问,决策评分,创意到回款,异常检测,CRM治理,KPI监控,六顶帽
+  authority: domain
+  skills: 13
+- id: opc
+  label: OPC 经营层
+  what: 资源盘点,赛道选择,商业模式,价值主张,MVP,转化闭环,资产沉淀,获客增长,经营体检,策略,技术栈,公司合规
+  triggers: OPC,一人公司,经营,立项,选赛道,商业模式,价值主张,MVP,转化,资产,获客,经营体检,策略,技术选型,公司注册,合规
+  authority: domain
+  skills: 14
+state_machines:
+- id: opc-business
+  label: OPC 经营层
+  stages: 9
+  entry: opc/opc-orchestrator
+  chain: 资源盘点 → 赛道选择 → 商业模式 → 价值主张 → MVP → 转化闭环 → 资产沉淀 → 获客增长 → 经营体检
+- id: idea-to-cash
+  label: idea-to-cash 产品层
+  stages: 16
+  entry: growth-ops/idea-to-cash
+  chain: 想法 → 验证 → 最小交付 → 定价 → 成交 → 回款
+skills:
+- id: growth-ops/anomaly-detection
+  name: 异常检测
+  path: skills/anomaly-detection/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: 异常检测方法论。覆盖：异常类型分类、检测算法选择、阈值校准、误报管理、根因分析。适用场景：业务异常检测（DAU/GMV 暴跌）、安全异常（日志/登录）、质量异常（生产数据异常）、运营异常（订单/库存）。
+  origin: 本机自研
+  license: 见来源
+  keywords: 异常检测,离群点,异常指标,数据告警
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
+- id: growth-ops/crm-data-governance
+  name: CRM 数据治理
+  path: skills/crm-data-governance/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: CRM 数据治理方法论。覆盖：数据模型设计、数据质量规则、字段标准化、主数据管理、合规审计。适用场景：新 CRM 实施、CRM 数据迁移、CRM 数据清洗、CRM 合规审计（GDPR/PIPL）。
+  origin: 本机自研
+  license: 见来源
+  keywords: crm治理,数据质量,字段规范,主数据,脏数据
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
+- id: growth-ops/first-principles-mentor
+  name: 第一性原理导师
+  path: skills/first-principles-mentor/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: '|'
+  origin: 本机自研
+  license: 见来源
+  keywords: 第一性原理,本质思考,拆到底层,回到本质
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
+- id: growth-ops/five-why
+  name: 五问法
+  path: skills/five-why/SKILL.md
+  version: v1.0
+  group: growth-ops
+  description: '|'
+  origin: 本机自研
+  license: 见来源
+  keywords: 5why,五问,根因分析,连续追问,根本原因
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 2
+- id: growth-ops/hv-analysis
+  name: 霍夫曼价值分析
+  path: skills/hv-analysis/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: '|'
+  origin: 本机自研
+  license: 见来源
+  keywords: hv分析,价值评估,可行性,成本收益,方案比选
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 3
+- id: growth-ops/idea-to-cash
+  name: 创意到回款
+  path: skills/idea-to-cash/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: 从一个想法到第一笔收款的 16 关陪跑教练（配套《Vibe Coding》系列）。当用户要开始或推进一个独立产品项目、问"现在该做什么/到哪一关了"、要做方向验证、需求 VDF、系统蓝图、上线前审查、定价、冷启动、促成第一笔收款，或提到
+    idea-to-cash / 过关 / 门禁时使用。有门禁：上一关未过不进下一关。
+  origin: 本机自研
+  license: 见来源
+  keywords: 从想法到收款,回款,现金流落地,创意变现,收款
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 32
+- id: growth-ops/kpi-monitoring
+  name: KPI 监控
+  path: skills/kpi-monitoring/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: KPI 监控体系建设方法论。覆盖：监控指标设计、阈值设定、告警分级、值班响应、根因分析。适用场景：业务上线后监控、生产事故响应、SLA 管理、连续性保障。
+  origin: 本机自研
+  license: 见来源
+  keywords: kpi监控,指标预警,阈值,监控看板,经营监控
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
+- id: growth-ops/orchestration
+  name: 多 Agent 编排
+  path: skills/orchestration/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: '>-'
+  origin: 本机自研
+  license: 见来源
+  keywords: 编排,多agent,任务编排,subagent,流水线
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
+- id: growth-ops/peers-advisory-group
+  name: 同伴顾问组
+  path: skills/peers-advisory-group/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: 私董会专家助手，引导用户完成完整的私董会流程。通过四位顶级幕僚（巴菲特、比尔·盖茨、马斯克、乔布斯）的多轮提问和反馈，帮助用户深入剖析问题本质并获得可执行的解决方案。融合百度搜索和百度百科实时数据，让幕僚"带着数据聊"。触发场景：(1)
+    用户说"开始私董会"、"私董会"、"peers advisory"，(2) 用户需要多角度分析复杂决策问题，(3) 用户希望获得不同商业领袖视角的建议，(4) 用户面临职业、创业、投资等重大决策需要深度咨询。支持自定义幕僚阵容。
+  origin: 本机自研
+  license: 见来源
+  keywords: 同伴顾问,同伴评议,peer,顾问组,同行建议
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 5
+- id: growth-ops/personalise
+  name: 个性化方案
+  path: skills/personalise/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: Take any external input (tutorial, repo, article, prompt, tool, framework, skill) and recommend
+    how to adapt it to your setup — workspace, work, tech stack, voice, and goals. Triggers on "personalise
+    this", "adapt this for me", "make this fit our setup", "/personalise [thing]".
+  origin: 本机自研
+  license: 见来源
+  keywords: 个性化,定制方案,按需定制,个性化推荐
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
+- id: growth-ops/plan-for-goal
+  name: 目标导向规划
+  path: skills/plan-for-goal/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: Turn any brief into a structured plan ready to feed /goal. Locked sections - Brief / Stack
+    / Scope (Visuals + Functionality) / Out of Scope / Constraints / Definition of Done / Acceptance Criteria
+    / Verification / Turn Budget / References / Risks. Engine-agnostic (Claude Code + Codex). Outputs
+    a markdown plan file plus a paste-ready /goal one-liner. Triggers on "/plan-for-goal", "plan-for-goal",
+    "plan for goal", "build me a /goal plan", "turn this into a plan".
+  origin: 本机自研
+  license: 见来源
+  keywords: 目标拆解,okr拆解,计划制定,里程碑,达成路径
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 2
+- id: growth-ops/risk-scoring
+  name: 风险评分
+  path: skills/risk-scoring/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: 多维度风险评分模型方法论。覆盖：风险维度设计、权重分配、评分算法、阈值设定、动态调整。适用场景：客户/供应商/项目/交易风险评估、信用评分、合规风险评估。
+  origin: 本机自研
+  license: 见来源
+  keywords: 风险评分,风险量化,风险等级,风险评估,打分模型
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
+- id: growth-ops/six-thinking-hats
+  name: 六顶思考帽
+  path: skills/six-thinking-hats/SKILL.md
+  version: v1.0
+  group: growth-ops
+  description: '|'
+  origin: 本机自研
+  license: 见来源
+  keywords: 六顶帽,思维帽,多角度思考,批判视角
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 4
+- id: opc/opc-100day-profit
+  name: 百日盈利蓝图
+  path: skills/opc-100day-profit/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: 100-day profit blueprint for AI One-Person Company (OPC) startups. Use when user is in
+    early stage (0-100 days) and needs a structured daily action plan, milestone tracking system, or go-to-market
+    timeline to reach first revenue. Triggers include "100天" "百日计划" "从0到1" "第一个客户" "创业计划" " startup timeline"
+    "盈利时间表" "AI创业起步" "Day 1" "验证期".
+  origin: 本地自研（AI 一人公司 OPC 体系）
+  license: 自研/内部使用
+  keywords: AI一人公司,百日盈利,100天,盈利计划,启动路线,新手起步
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 2
+- id: opc/opc-asset-ops
+  name: 资产沉淀
+  path: skills/opc-asset-ops/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Turn repeatable outputs of a one-person company into compounding assets. Use when Codex
+    needs to explain asset-compounding concepts when needed, verify prerequisite outputs, ask one question
+    at a time, present multiple assetization priorities, and write user-confirmed outputs into `opc-doc/`.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: 复利资产,可复用产出,沉淀资产,资产化,内容资产
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 4
+- id: opc/opc-business-model-design
+  name: 商业模式设计
+  path: skills/opc-business-model-design/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Design a viable business model for a one-person company using Lean Canvas and a simplified
+    Business Model Canvas. Use when Codex needs to explain the business-model concepts when needed, verify
+    niche and value-proposition prerequisites, ask one question at a time, present multiple model choices,
+    and write user-confirmed outputs into `opc-doc/`.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: 商业模式,盈利模式,精益画布,业务模型,商业模式设计
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 5
+- id: opc/opc-compliance
+  name: 公司注册与合规
+  path: skills/opc-compliance/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: AI One-Person Company (OPC) compliance guide for company registration, tax optimization,
+    copyright protection, and legal risk isolation in China. Use when user needs to register a company
+    (Hangzhou/Suzhou focus), handle tax and finance compliance, address AI-specific legal requirements
+    (algorithm filing, data compliance, model filing), or choose between business entity types. Triggers
+    include "注册公司" "AI公司注册" "杭州注册" "财税合规" "算法备案" "数据合规" "个体户还是公司" "节税" "版权" "合同模板".
+  origin: 本地自研（AI 一人公司 OPC 体系）
+  license: 自研/内部使用
+  keywords: 公司注册,个体户,杭州注册,苏州注册,财税合规,算法备案,备案,合规,营业执照
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 10
+- id: opc/opc-conversion-loop
+  name: 转化闭环
+  path: skills/opc-conversion-loop/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Design a conversion loop for a one-person company from reach to lead capture to purchase.
+    Use when Codex needs to explain conversion concepts when needed, verify MVP prerequisites, ask one
+    question at a time, present multiple conversion-path options, and write user-confirmed outputs into
+    `opc-doc/`.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: 转化,转化闭环,增长闭环,落地页转化,成交路径
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 4
+- id: opc/opc-dashboard-review
+  name: 经营体检
+  path: skills/opc-dashboard-review/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Review the operating health of a one-person company using lightweight metrics, bottleneck
+    analysis, and stop-loss logic. Use when Codex needs to explain review concepts when needed, verify
+    available outputs, ask one question at a time, present multiple bottleneck hypotheses, and write user-confirmed
+    outputs into `opc-doc/`.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: 经营体检,经营看板,经营复盘,指标复盘,数据复盘,运营健康度
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 5
+- id: opc/opc-growth
+  name: 获客增长
+  path: skills/opc-growth/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: AI One-Person Company (OPC) growth framework for customer acquisition, conversion, delivery,
+    and retention. Use when user needs to find customers, convert leads, deliver AI services, build a
+    content marketing system, or set up automated acquisition funnels. Triggers include "获客" "找客户" "转化"
+    "交付" "内容营销" "小红书" "公众号" "私域" "复购" "裂变" "AI获客" "自动引流".
+  origin: 本地自研（AI 一人公司 OPC 体系）
+  license: 自研/内部使用
+  keywords: 获客,增长,拉新,客户获取,小红书获客,客户访谈,增长框架
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 6
+- id: opc/opc-mvp-designer
+  name: MVP 设计
+  path: skills/opc-mvp-designer/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Define the smallest viable experiment and MVP for a selected one-person company opportunity.
+    Use when Codex needs to explain what MVP means when needed, verify prerequisites, ask one question
+    at a time, present multiple MVP options, and write user-confirmed outputs into `opc-doc/`.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: mvp,最小可行产品,mvp设计,最小实验,验证方案,原型范围
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 4
+- id: opc/opc-niche-positioning
+  name: 赛道选择
+  path: skills/opc-niche-positioning/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Find and position a viable niche market for a one-person company by combining market mapping
+    and customer segmentation. Use when Codex needs to explain niche concepts when needed, check founder-resource
+    prerequisites, ask one question at a time, generate multiple niche options, and write user-confirmed
+    positioning outputs into `opc-doc/`.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: 选赛道,细分定位,细分市场,赛道定位,利基,市场定位,垂直定位
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 5
+- id: opc/opc-orchestrator
+  name: OPC 编排
+  path: skills/opc-orchestrator/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Orchestrate the full one-person company workflow across all OPC skills. Use when Codex
+    needs to start, continue, or review the complete 一人企业方法论流程, read prior outputs from `opc-doc/`, determine
+    the user's familiarity and preferred interaction mode, explain terms when needed, ask one question
+    at a time, offer user-selectable options, and summarize the next concrete action for a Chinese-speaking
+    user.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: opc,一人公司,编排,orchestrator,流程编排,全流程,调度
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 5
+- id: opc/opc-resource-audit
+  name: 资源盘点
+  path: skills/opc-resource-audit/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Inventory all founder resources across 8 categories for a one-person company. Use when
+    Codex needs to systematically confirm what resources the founder has — experience, network, skills,
+    relationships, channels, assets, time/money constraints, hard limits — by first doing a broad scan
+    of each category, then drilling into specifics (distribution, usable portions, how to use, cost of
+    use), and producing a confirmed detailed resource inventory written to `opc-doc/`. Does NOT analyze
+    directions, preferences, suitability, or risk tolerance — those belong to downstream skills.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: 资源盘点,家底盘点,资源清单,个人资源,优势盘点
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 4
+- id: opc/opc-strategy
+  name: OPC 战略
+  path: skills/opc-strategy/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: AI One-Person Company (OPC) strategy framework for niche selection, MVP validation, and
+    business model design. Use when user is choosing an AI startup direction, validating a product idea,
+    screening business opportunities, or designing pricing and revenue models for a solo AI business.
+    Triggers include "AI创业选方向" "AI赛道" "MVP验证" "商业模式" "定价策略" "AI副业选什么" "一人公司做什么".
+  origin: 本地自研（AI 一人公司 OPC 体系）
+  license: 自研/内部使用
+  keywords: opc,一人公司,战略,定位,赛道,访谈,付费测试,go/no-go,最小交付
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 7
+- id: opc/opc-techstack
+  name: 技术栈搭建
+  path: skills/opc-techstack/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: AI One-Person Company (OPC) technical toolkit for building AI agent teams, selecting tool
+    stacks, and automating operations. Use when user needs to select AI tools, build AI agents, integrate
+    MCP/A2A protocols, optimize AI API costs, or set up a no-code/low-code automation system. Triggers
+    include "AI工具" "Agent搭建" "Dify" "Coze" "MCP" "自动化" "工具栈" "AI员工" "降本" "API成本" "n8n" "工作流".
+  origin: 本地自研（AI 一人公司 OPC 体系）
+  license: 自研/内部使用
+  keywords: 技术栈,工具栈,agent搭建,自动化,订阅审计,ai工具
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 9
+- id: opc/opc-value-proposition
+  name: 价值主张
+  path: skills/opc-value-proposition/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: Design value propositions for candidate customer segments and help the user choose the
+    strongest one. Use when Codex needs to explain jobs, pains, and gains when needed, check niche-positioning
+    prerequisites, ask one question at a time, present multiple value-proposition options, and write user-confirmed
+    outputs into `opc-doc/`.
+  origin: anthropics/knowledge-work-plugins (growth-ops)
+  license: 自研/内部使用
+  keywords: 价值主张,value proposition,用户价值,核心价值,差异化,定价
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 4
