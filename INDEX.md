@@ -1,7 +1,7 @@
 # OPC 经营与商业判断 索引（L0）
 
-> **这是本库唯一需要常驻进上下文的内容**（~1572 tokens）。
-> 27 个技能正文**全部按需拉取**，绝不整包读入。
+> **这是本库唯一需要常驻进上下文的内容**（~1661 tokens）。
+> 29 个技能正文**全部按需拉取**，绝不整包读入。
 
 ## 何时用这个库
 
@@ -25,7 +25,7 @@
 
 ## 技能路由表
 
-### OPC 经营层（14）
+### OPC 经营层（16）
 
 触发词：OPC,一人公司,经营,立项,选赛道,商业模式,价值主张,MVP,转化,资产,获客,经营体检,策略,技术选型,公司注册,合规
 
@@ -37,7 +37,9 @@
 | `opc/opc-compliance` | 公司注册与合规 | 公司注册,个体户,杭州注册,苏州注册,财税合规,算法备案,备案,合规,营业执照 | 10 |
 | `opc/opc-conversion-loop` | 转化闭环 | 转化,转化闭环,增长闭环,落地页转化,成交路径 | 4 |
 | `opc/opc-dashboard-review` | 经营体检 | 经营体检,经营看板,经营复盘,指标复盘,数据复盘,运营健康度 | 5 |
+| `opc/opc-experiment-design` | 实验设计 | 实验,A/B,AB测试,灰度,对照,验证假设,定价测试,落地页,假门,fake door,样本量,显著性,最小可行验证 | 1 |
 | `opc/opc-growth` | 获客增长 | 获客,增长,拉新,客户获取,小红书获客,客户访谈,增长框架 | 6 |
+| `opc/opc-metric-dictionary` | 指标字典 | 指标,口径,指标字典,北极星,转化率,留存,复购,客单价,健康度,指标卡,统计口径,埋点 | 1 |
 | `opc/opc-mvp-designer` | MVP 设计 | mvp,最小可行产品,mvp设计,最小实验,验证方案,原型范围 | 4 |
 | `opc/opc-niche-positioning` | 赛道选择 | 选赛道,细分定位,细分市场,赛道定位,利基,市场定位,垂直定位 | 5 |
 | `opc/opc-orchestrator` | OPC 编排 | opc,一人公司,编排,orchestrator,流程编排,全流程,调度 | 5 |
@@ -71,7 +73,7 @@
 ```bash
 python tools/fetch.py --index                 # 取 L0
 python tools/fetch.py --search 赛道            # 定位技能
-python tools/fetch.py --raw skills/opc/opc-niche-positioning/SKILL.md
+python tools/fetch.py --raw skills/opc-niche-positioning/SKILL.md
 ```
 
 ## 硬规则

@@ -4,7 +4,7 @@ library: opc-playbook
 label: OPC 经营与商业判断
 updated: '2026-10-31'
 count:
-  skills: 27
+  skills: 29
   groups: 2
 groups:
 - id: growth-ops
@@ -18,7 +18,7 @@ groups:
   what: 资源盘点,赛道选择,商业模式,价值主张,MVP,转化闭环,资产沉淀,获客增长,经营体检,策略,技术栈,公司合规
   triggers: OPC,一人公司,经营,立项,选赛道,商业模式,价值主张,MVP,转化,资产,获客,经营体检,策略,技术选型,公司注册,合规
   authority: domain
-  skills: 14
+  skills: 16
 state_machines:
 - id: opc-business
   label: OPC 经营层
@@ -342,6 +342,24 @@ skills:
   deprecated: false
   authority: primary
   files: 5
+- id: opc/opc-experiment-design
+  name: 实验设计
+  path: skills/opc-experiment-design/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: AB 实验与假设验证设计 —— 用最小成本证伪一个商业假设，并预先定好判定规则。Use when user wants to test an idea, validate a
+    hypothesis, run an A/B test, decide pricing, or compare two variants before committing resources.
+    Triggers include "实验" "A/B" "AB测试" "AB 实验" "灰度" "对照" "验证" "验证假设" "做个测试" "哪个更好" "定价测试" "落地页" "转化率提升"
+    "最小可行验证" "假门" "fake door" "样本量" "显著性" "p值" "experiment".
+  origin: 本地自研（AI 一人公司 OPC 体系）
+  license: 自研/内部使用
+  keywords: 实验,A/B,AB测试,灰度,对照,验证假设,定价测试,落地页,假门,fake door,样本量,显著性,最小可行验证
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
 - id: opc/opc-growth
   name: 获客增长
   path: skills/opc-growth/SKILL.md
@@ -360,6 +378,24 @@ skills:
   deprecated: false
   authority: primary
   files: 6
+- id: opc/opc-metric-dictionary
+  name: 指标字典
+  path: skills/opc-metric-dictionary/SKILL.md
+  version: 1.0.0
+  group: opc
+  description: 指标字典与口径纪律 —— 把"增长""转化""健康度"这类模糊词变成可计算、可比较、有归属的指标。Use when metrics are ambiguous, when two
+    people compute different numbers for the same thing, when building a dashboard, or when defining what
+    "good" means for the OPC stage. Triggers include "指标" "口径" "指标字典" "北极星" "北极星指标" "转化率" "留存" "复购" "客单价"
+    "LTV" "CAC" "健康度" "怎么算" "统计口径" "指标卡" "metric" "KPI定义" "埋点".
+  origin: 本地自研（AI 一人公司 OPC 体系）
+  license: 自研/内部使用
+  keywords: 指标,口径,指标字典,北极星,转化率,留存,复购,客单价,健康度,指标卡,统计口径,埋点
+  tags:
+  - opc
+  - business
+  deprecated: false
+  authority: primary
+  files: 1
 - id: opc/opc-mvp-designer
   name: MVP 设计
   path: skills/opc-mvp-designer/SKILL.md

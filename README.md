@@ -1,7 +1,7 @@
 # opc-playbook
 
 > **OPC 经营与商业判断技能库** —— 把「怎么做生意」这件事拆成可执行、可验证、可复用的技能。
-> 27 个技能 · 2 个组 · 三层渐进披露（只有 `INDEX.md` 常驻）
+> 29 个技能 · 2 个组 · 三层渐进披露（只有 `INDEX.md` 常驻）
 
 ---
 
@@ -33,8 +33,8 @@
 | UI 级需求分析（show-me → 信息架构/页面清单） | `design-skills-playbook` |
 | 多库组合、pin、composition 解析 | `skills-meta` |
 
-> **本库不装进 Agent，也不多库混装。** 常驻的只有 `INDEX.md`（约 1.6k tokens），
-> 27 个技能正文**全部按需拉取**，一次最多拉 3 个。
+> **本库不装进 Agent，也不多库混装。** 常驻的只有 `INDEX.md`（约 1.7k tokens），
+> 29 个技能正文**全部按需拉取**，一次最多拉 3 个。
 
 ---
 
@@ -88,11 +88,11 @@ opc-playbook/
 
 ## 两组内容
 
-### `opc` 组（14）—— OPC 经营层
+### `opc` 组（16）—— OPC 经营层
 
 资源盘点 → 赛道选择 → 商业模式 → 价值主张 → MVP → 转化闭环 → 资产沉淀 → 获客增长 → 经营体检
 
-外加：OPC 战略、OPC 编排、技术栈搭建、公司注册与合规。
+外加：OPC 战略、OPC 编排、技术栈搭建、公司注册与合规、**指标字典**、**实验设计**。
 
 ### `growth-ops` 组（13）—— 通用增长与分析
 
@@ -106,7 +106,7 @@ opc-playbook/
 | 来源 | 数量 | 许可 |
 |---|---:|---|
 | Anthropic `knowledge-work-plugins`（growth-ops 9 个） | 9 | Apache-2.0 |
-| 本机自研（含 AI 一人公司 OPC 体系 5 个） | 18 | 见各 SKILL.md |
+| 本机自研（含 AI 一人公司 OPC 体系 7 个） | 20 | 见各 SKILL.md |
 
 逐条记录在 `catalog.yaml` 的 `origin` 字段，详见 `NOTICE`。
 

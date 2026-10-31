@@ -27,12 +27,13 @@ Copyright (c) 2026 maning636
 --------------------------------------------------------------------------
 2. 本机自研（含 AI 一人公司 OPC 体系）
    License: 见各技能 frontmatter 的 license 字段；未声明者视为作者自研
-   收录内容: 18 个
+   收录内容: 20 个
              growth-ops/{idea-to-cash, orchestration, personalise, plan-for-goal,
                          five-why, hv-analysis, risk-scoring, peers-advisory-group,
                          six-thinking-hats, first-principles-mentor,
                          anomaly-detection, kpi-monitoring, crm-data-governance}
-             opc/{opc-100day-profit, opc-strategy, opc-techstack, opc-compliance}
+             opc/{opc-100day-profit, opc-strategy, opc-techstack, opc-compliance,
+                 opc-metric-dictionary, opc-experiment-design}
 
    说明: 导入时对文本文件做了编码归一化（统一 UTF-8），并剔除 .git / node_modules /
          dist 等构建产物。技能正文未做内容修改，仅重写了 frontmatter
@@ -60,4 +61,6 @@ tools/curated_zh.json、catalog.yaml 生成逻辑，以及各技能 frontmatter 
 本库自 agent-skills 的 domains/opc/ 与 domains/growth-ops/ 迁出而成
 （迁出日期 2026-10-31）。迁出只改变目录形态与 frontmatter 字段，
 技能正文未做内容修改。
+2026-10-31 补充：新增 opc-metric-dictionary（指标字典）与
+opc-experiment-design（AB 实验设计），补齐 OPC 阶段机最后的悬空能力。
 --------------------------------------------------------------------------
