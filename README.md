@@ -79,7 +79,7 @@ opc-playbook/
 └─ tools/
    ├─ fetch.py              取用工具（零依赖）
    ├─ regen_catalog.py      重生成 INDEX.md + catalog.yaml
-   ├─ curated_zh.json       27 个技能的中文名与触发词
+   ├─ curated_zh.json       29 个技能的中文名与触发词
    ├─ domain_meta.json      分组元信息（唯一真相源）
    └─ fix_ids.py            id 规范化（一次性）
 ```
