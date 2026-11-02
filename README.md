@@ -1,7 +1,7 @@
 # opc-playbook
 
 > **OPC 经营与商业判断技能库** —— 把「怎么做生意」这件事拆成可执行、可验证、可复用的技能。
-> 30 个技能 · 2 个组 · 三层渐进披露（只有 `INDEX.md` 常驻）
+> 31 个技能 · 2 个组 · 三层渐进披露（只有 `INDEX.md` 常驻）
 
 ---
 
@@ -13,6 +13,8 @@
 |---|---:|---|---|
 | **OPC 经营层** | 9 | `opc/opc-orchestrator` | 我该做什么生意？凭什么是你？第一步做什么？ |
 | **idea-to-cash 产品层** | 16 | `growth-ops/idea-to-cash` | 从一个想法到收到钱，中间卡在哪？ |
+
+辅助流程（不是第三台状态机）：`growth-ops/client-requirements` 用 7 步完成客户项目需求、报价范围与 H2 交接；产品原型不强制完整 H2。
 
 两台状态机**共享同一个业务 ID**，互不覆盖、只互相引用：
 
@@ -35,7 +37,7 @@
 | 多库组合、pin、composition 解析 | `skills-meta` |
 
 > **本库不装进 Agent，也不多库混装。** 常驻的只有 `INDEX.md`（约 1.8k tokens），
-> 30 个技能正文**全部按需拉取**，一次最多拉 3 个。
+> 31 个技能正文**全部按需拉取**，一次最多拉 3 个。
 
 ---
 
@@ -80,7 +82,7 @@ opc-playbook/
 └─ tools/
    ├─ fetch.py              取用工具（零依赖）
    ├─ regen_catalog.py      重生成 INDEX.md + catalog.yaml
-   ├─ curated_zh.json       30 个技能的中文名与触发词
+   ├─ curated_zh.json       31 个技能的中文名与触发词
    ├─ domain_meta.json      分组元信息（唯一真相源）
    └─ fix_ids.py            id 规范化（一次性）
 ```
@@ -95,10 +97,11 @@ opc-playbook/
 
 外加：OPC 战略、OPC 编排、技术栈搭建、公司注册与合规、**指标字典**、**实验设计**、**共享业务 ID 注册表**。
 
-### `growth-ops` 组（13）—— 通用增长与分析
+### `growth-ops` 组（14）—— 通用增长与分析
 
 目标导向规划、第一性原理导师、五问法、霍夫曼价值分析、风险评分、
-同伴顾问组、六顶思考帽、多 Agent 编排、个性化方案、异常检测、KPI 监控、CRM 数据治理、创意到回款。
+同伴顾问组、六顶思考帽、多 Agent 编排、个性化方案、异常检测、KPI 监控、CRM 数据治理、
+创意到回款、客户项目需求分析。
 
 ---
 
@@ -107,7 +110,7 @@ opc-playbook/
 | 来源 | 数量 | 许可 |
 |---|---:|---|
 | Anthropic `knowledge-work-plugins`（growth-ops 9 个） | 9 | Apache-2.0 |
-| 本机自研（含 AI 一人公司 OPC 体系 7 个） | 21 | 见各 SKILL.md |
+| 本机自研（含 AI 一人公司 OPC 体系 7 个） | 22 | 见各 SKILL.md |
 
 逐条记录在 `catalog.yaml` 的 `origin` 字段，详见 `NOTICE`。
 

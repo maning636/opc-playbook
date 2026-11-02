@@ -2,7 +2,7 @@
 id: opc/opc-business-registry
 domain: opc
 name: opc-business-registry
-description: 共享业务 ID 注册表 —— 给一条业务线分配唯一编号（REQ-年份-序号），并让经营层、产品层、工程层三台状态机靠同一个 ID 互相引用、互不覆盖。当需要立项、给业务起编号、或要确认"这三份东西是不是同一件事"时使用。
+description: 共享业务 ID 注册表 —— 给一条业务线分配唯一编号（REQ-年份-序号），并让经营层、产品层、工程层三条工作流靠同一个 ID 互相引用、互不覆盖。当需要立项、给业务起编号、或要确认"这三份东西是不是同一件事"时使用。
 origin: 本机自研
 license: 见来源
 library: opc-playbook
@@ -27,7 +27,7 @@ library: opc-playbook
 
 ## 为什么要有它
 
-没有共享 ID 的时候，三台状态机会各说各话：
+没有共享 ID 的时候，三条工作流会各说各话：
 
 - 经营层说"我们在做 HyperFrames"
 - 产品层说"当前在第 7 关，审美第一屏"

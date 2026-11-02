@@ -2,9 +2,9 @@ version: 1
 kind: skills
 library: opc-playbook
 label: OPC 经营与商业判断
-updated: '2026-10-31'
+updated: '2026-11-03'
 count:
-  skills: 30
+  skills: 31
   groups: 2
 groups:
 - id: growth-ops
@@ -12,7 +12,7 @@ groups:
   what: 目标拆解,根因分析,同行顾问,决策评分,创意到回款,异常检测,CRM数据治理,KPI监控
   triggers: 目标拆解,根因分析,五问,第一性原理,同行顾问,决策评分,创意到回款,异常检测,CRM治理,KPI监控,六顶帽
   authority: domain
-  skills: 13
+  skills: 14
 - id: opc
   label: OPC 经营层
   what: 资源盘点,赛道选择,商业模式,价值主张,MVP,转化闭环,资产沉淀,获客增长,经营体检,策略,技术栈,公司合规
@@ -52,6 +52,22 @@ skills:
   deprecated: false
   authority: primary
   files: 1
+- id: growth-ops/client-requirements
+  name: 客户项目需求分析
+  path: skills/client-requirements/SKILL.md
+  version: 1.0.0
+  group: growth-ops
+  description: 客户项目需求分析的 7 步陪跑（带门禁）。当用户拿着线下拜访纪要、聊天记录、客户表格或系统截图，要分析企业/制造业客户的项目需求、梳理角色与现状流程、列待补问清单、写需求条目、划定报价范围与验收标准、产出可交付开发的
+    PRD，或提到 client-requirements / 客户需求 / 需求调研 / 报价前确认时使用。自有产品请走 idea-to-cash。
+  origin: 本机自研
+  license: MIT
+  keywords: 客户需求,需求调研,需求分析,报价前确认,验收标准,PRD,拜访纪要,制造业项目
+  tags:
+  - growth-ops
+  - business
+  deprecated: false
+  authority: primary
+  files: 25
 - id: growth-ops/crm-data-governance
   name: CRM 数据治理
   path: skills/crm-data-governance/SKILL.md
@@ -298,10 +314,10 @@ skills:
   path: skills/opc-business-registry/SKILL.md
   version: 1.0.0
   group: opc
-  description: 共享业务 ID 注册表 —— 给一条业务线分配唯一编号（REQ-年份-序号），并让经营层、产品层、工程层三台状态机靠同一个 ID 互相引用、互不覆盖。当需要立项、给业务起编号、或要确认"这三份东西是不是同一件事"时使用。
+  description: 共享业务 ID 注册表 —— 给一条业务线分配唯一编号（REQ-年份-序号），并让经营层、产品层、工程层三条工作流靠同一个 ID 互相引用、互不覆盖。当需要立项、给业务起编号、或要确认"这三份东西是不是同一件事"时使用。
   origin: 本机自研
   license: 见来源
-  keywords: 业务ID,业务编号,立项,编号,贯穿,三台状态机,同一个ID,注册表
+  keywords: 业务ID,业务编号,立项,编号,贯穿,两台状态机,同一个ID,注册表
   tags:
   - opc
   - business
