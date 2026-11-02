@@ -4,7 +4,7 @@ domain: growth-ops
 name: client-requirements
 description: 客户项目需求分析的 7 步陪跑（带门禁）。当用户拿着线下拜访纪要、聊天记录、客户表格或系统截图，要分析企业/制造业客户的项目需求、梳理角色与现状流程、列待补问清单、写需求条目、划定报价范围与验收标准、产出可交付开发的 PRD，或提到 client-requirements / 客户需求 / 需求调研 / 报价前确认时使用。自有产品请走 idea-to-cash。
 origin: 本机自研
-license: 见来源
+license: MIT
 library: opc-playbook
 ---
 

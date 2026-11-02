@@ -9,6 +9,10 @@
       "CRM 数据治理",
       "crm治理,数据质量,字段规范,主数据,脏数据"
     ],
+    "growth-ops/client-requirements": [
+      "客户项目需求分析",
+      "客户需求,需求调研,需求分析,报价前确认,验收标准,PRD,拜访纪要,制造业项目"
+    ],
     "growth-ops/first-principles-mentor": [
       "第一性原理导师",
       "第一性原理,本质思考,拆到底层,回到本质"
@@ -63,7 +67,7 @@
     ],
     "opc/opc-business-registry": [
       "共享业务 ID 注册表",
-      "业务ID,业务编号,立项,编号,贯穿,三台状态机,同一个ID,注册表"
+      "业务ID,业务编号,立项,编号,贯穿,两台状态机,同一个ID,注册表"
     ],
     "opc/opc-business-model-design": [
       "商业模式设计",
